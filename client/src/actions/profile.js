@@ -32,14 +32,17 @@ export const createProfile = (
         'Content-Type': 'application/json'
       }
     };
+    
     const res = await axios.post('/api/profile', formData, config);
 
     dispatch({
       type: GET_PROFILE,
       payload: res.data
     });
+
     dispatch(setAlert(edit ? 'Profile Updated' : 'Profile Created', 'success'));
 
+    console.log(res.data);
     if (!edit) {
       history.push('/dashboard');
     }
@@ -49,6 +52,7 @@ export const createProfile = (
     if (errors) {
       errors.forEach(error => dispatch(setAlert(error.msg, 'danger')));
     }
+
     dispatch({
       type: PROFILE_ERROR,
       payload: { msg: err.response.statusText, status: err.response.status }
