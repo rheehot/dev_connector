@@ -7,6 +7,7 @@ const { check, validationResult } = require('express-validator');
 
 const Profile = require('../../models/profile');
 const User = require('../../models/user');
+const Post = require('../../models/post');
 
 // @route   GET api/profile/me
 // @desc    Get current users profile
@@ -15,7 +16,7 @@ router.get('/me', auth, async (req, res) => {
   try {
     const profile = await Profile.findOne({ user: req.user.id }).populate(
       'user',
-      ['name', 'avatar']
+      ['name', 'avatar'],
     );
 
     if (!profile) {
@@ -42,8 +43,8 @@ router.post(
         .isEmpty(),
       check('skills', 'Skills is required')
         .not()
-        .isEmpty()
-    ]
+        .isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -63,7 +64,7 @@ router.post(
       facebook,
       twitter,
       instagram,
-      linkedin
+      linkedin,
     } = req.body;
 
     // Build profile object
@@ -95,7 +96,7 @@ router.post(
         profile = await Profile.findOneAndUpdate(
           { user: req.user.id },
           { $set: profileFields },
-          { new: true }
+          { new: true },
         );
 
         return res.json(profile);
@@ -110,7 +111,7 @@ router.post(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   GET api/profile
@@ -137,7 +138,7 @@ router.get('/', async (req, res) => {
 router.get('/user/:user_id', async (req, res) => {
   try {
     const profile = await Profile.findOne({
-      user: req.params.user_id
+      user: req.params.user_id,
     }).populate('user', ['name', 'avatar']);
 
     if (!profile) {
@@ -159,8 +160,8 @@ router.get('/user/:user_id', async (req, res) => {
 // @access  Private
 router.delete('/', auth, async (req, res) => {
   try {
-    // @todo - remove users posts
-
+    // Remove users posts
+    await Post.deleteMany({ user: req.user.id });
     // Remove profile
     await Profile.findOneAndRemove({ user: req.user.id });
     // Remove user
@@ -189,8 +190,8 @@ router.put(
         .isEmpty(),
       check('from', 'From date is required')
         .not()
-        .isEmpty()
-    ]
+        .isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -205,7 +206,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     } = req.body;
 
     const newExp = {
@@ -215,7 +216,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     };
 
     try {
@@ -230,7 +231,7 @@ router.put(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   DELETE api/profile/experience/:exp_id
@@ -275,8 +276,8 @@ router.put(
         .isEmpty(),
       check('from', 'From date is required')
         .not()
-        .isEmpty()
-    ]
+        .isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -291,7 +292,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     } = req.body;
 
     const newEdu = {
@@ -301,7 +302,7 @@ router.put(
       from,
       to,
       current,
-      description
+      description,
     };
 
     try {
@@ -316,7 +317,7 @@ router.put(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   DELETE api/profile/education/:edu_id
@@ -351,10 +352,10 @@ router.get('/github/:username', (req, res) => {
       uri: `https://api.github.com/users/${
         req.params.username
       }/repos?per_page=5&sort=created:asc&client_id=${config.get(
-        'githubClientId'
+        'githubClientId',
       )}&client_secret=${config.get('githubSecret')}`,
       method: 'GET',
-      headers: { 'user-agent': 'node.js' }
+      headers: { 'user-agent': 'node.js' },
     };
 
     request(options, (error, response, body) => {

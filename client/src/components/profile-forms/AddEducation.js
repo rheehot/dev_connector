@@ -68,19 +68,21 @@ const AddEducation = ({ addEducation, history }) => {
         <div class="form-group">
           <input
             type="text"
-            placeholder="Field of Study"
+            placeholder="* Field of Study"
             name="fieldOfStudy"
             value={fieldOfStudy}
             onChange={e => onChange(e)}
+            required
           />
         </div>
         <div class="form-group">
-          <h4>From Date</h4>
+          <h4>* From Date</h4>
           <input
             type="date"
             name="from"
             value={from}
             onChange={e => onChange(e)}
+            required
           />
         </div>
         <div class="form-group">
@@ -95,7 +97,7 @@ const AddEducation = ({ addEducation, history }) => {
                 toggleDisabled(!toDateDisabled);
               }}
             />{' '}
-            Current Job
+            Current School
           </p>
         </div>
         <div class="form-group">
