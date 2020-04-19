@@ -63,8 +63,8 @@ const EditProfile = ({
     instagram,
   } = formData;
 
-  const onChange = e =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onChange = ({ target: { name, value } }) =>
+    setFormData({ ...formData, [name]: value });
 
   const onSubmit = e => {
     e.preventDefault();
