@@ -55,7 +55,7 @@ const PostItem = ({
                 className="btn btn-danger"
                 onClick={e => deletePost(_id)}
               >
-                <i class="fas fa-times" />
+                <i className="fas fa-times" />
               </button>
             )}
           </Fragment>
