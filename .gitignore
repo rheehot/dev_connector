@@ -1,6 +1,7 @@
 # dependencies
 node_modules/
 config/default.json
+config/production.json
 remove/
 client/node_modules/
 client/.pnp
