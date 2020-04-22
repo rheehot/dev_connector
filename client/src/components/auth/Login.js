@@ -56,7 +56,7 @@ const Login = ({ login, isAuthenticated }) => {
       <p className="my-1">
         Don't have an account? <Link to="/register">Sign Up</Link>
       </p>
-      <div class="white-space-pre sample-account">
+      <div className="white-space-pre sample-account">
         {`
       Sample Account(ID / PW) :
 

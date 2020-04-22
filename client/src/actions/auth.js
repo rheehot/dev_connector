@@ -8,7 +8,7 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGOUT,
-  CLEAR_PROFILE
+  CLEAR_PROFILE,
 } from './types';
 import setAuthToken from '../utils/setAuthToken';
 
@@ -23,11 +23,11 @@ export const loadUser = () => async dispatch => {
 
     dispatch({
       type: USER_LOADED,
-      payload: res.data
+      payload: res.data,
     });
   } catch (err) {
     dispatch({
-      type: AUTH_ERROR
+      type: AUTH_ERROR,
     });
   }
 };
@@ -36,8 +36,8 @@ export const loadUser = () => async dispatch => {
 export const register = ({ name, email, password }) => async dispatch => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const body = JSON.stringify({ name, email, password });
@@ -47,7 +47,7 @@ export const register = ({ name, email, password }) => async dispatch => {
 
     dispatch({
       type: REGISTER_SUCCESS,
-      payload: res.data
+      payload: res.data,
     });
     dispatch(loadUser());
   } catch (err) {
@@ -58,7 +58,7 @@ export const register = ({ name, email, password }) => async dispatch => {
     }
 
     dispatch({
-      type: REGISTER_FAILURE
+      type: REGISTER_FAILURE,
     });
   }
 };
@@ -67,8 +67,8 @@ export const register = ({ name, email, password }) => async dispatch => {
 export const login = (email, password) => async dispatch => {
   const config = {
     headers: {
-      'Content-Type': 'application/json'
-    }
+      'Content-Type': 'application/json',
+    },
   };
 
   const body = JSON.stringify({ email, password });
@@ -78,7 +78,7 @@ export const login = (email, password) => async dispatch => {
 
     dispatch({
       type: LOGIN_SUCCESS,
-      payload: res.data
+      payload: res.data,
     });
 
     dispatch(loadUser());
@@ -90,7 +90,7 @@ export const login = (email, password) => async dispatch => {
     }
 
     dispatch({
-      type: LOGIN_FAILURE
+      type: LOGIN_FAILURE,
     });
   }
 };

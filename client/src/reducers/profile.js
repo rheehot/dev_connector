@@ -6,6 +6,7 @@ import {
   CLEAR_PROFILE,
   UPDATE_PROFILE,
 } from '../actions/types';
+
 const initialState = {
   profile: null,
   profiles: [],

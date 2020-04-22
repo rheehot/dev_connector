@@ -4,7 +4,6 @@ const { check, validationResult } = require('express-validator');
 const auth = require('../../middleware/auth');
 
 const Post = require('../../models/post');
-const Profile = require('../../models/profile');
 const User = require('../../models/user');
 
 // @route   POST api/posts
@@ -17,8 +16,8 @@ router.post(
     [
       check('text', 'Text is required')
         .not()
-        .isEmpty()
-    ]
+        .isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -33,7 +32,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id
+        user: req.user.id,
       });
 
       const post = await newPost.save();
@@ -43,7 +42,7 @@ router.post(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   GET api/posts
@@ -169,8 +168,8 @@ router.post(
     [
       check('text', 'Text is required')
         .not()
-        .isEmpty()
-    ]
+        .isEmpty(),
+    ],
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -186,7 +185,7 @@ router.post(
         text: req.body.text,
         name: user.name,
         avatar: user.avatar,
-        user: req.user.id
+        user: req.user.id,
       };
 
       post.comments.unshift(newComment);
@@ -198,7 +197,7 @@ router.post(
       console.error(err.message);
       res.status(500).send('Server Error');
     }
-  }
+  },
 );
 
 // @route   DELETE api/posts/comment/:post_id/:id
@@ -223,8 +222,8 @@ router.delete('/comment/:post_id/:id', auth, async (req, res) => {
 
     // Get remove index
     const removeIndex = post.comments
-      .map(comment => comment.user.toString())
-      .indexOf(req.user.id);
+      .map(comment => comment.id)
+      .indexOf(req.params.id);
 
     post.comments.splice(removeIndex, 1);
 

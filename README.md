@@ -23,8 +23,7 @@ $ touch default.json
 {
   "mongoURI": "xxx",
   "jwtSecret": "xxx",
-  "githubClientId": "xxx",
-  "githubSecret": "xxx"
+  "githubToken": "xxx"
 }
 ```
 
@@ -76,3 +75,7 @@ Give a ⭐️ if you like this project!
 ## 📝 License
 
 This project is [MIT](./LICENSE) licensed.
+
+## Resource
+
+You can get an Github token by following [these instructions](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)

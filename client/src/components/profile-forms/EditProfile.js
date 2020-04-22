@@ -30,21 +30,24 @@ const EditProfile = ({
   useEffect(() => {
     getCurrentProfile();
 
-    setFormData({
-      company: loading || !profile.company ? '' : profile.company,
-      website: loading || !profile.website ? '' : profile.website,
-      location: loading || !profile.location ? '' : profile.location,
-      status: loading || !profile.status ? '' : profile.status,
-      skills: loading || !profile.skills ? '' : profile.skills.join(', '),
-      githubUsername:
-        loading || !profile.githubUsername ? '' : profile.githubUsername,
-      bio: loading || !profile.bio ? '' : profile.bio,
-      twitter: loading || !profile.social ? '' : profile.social.twitter,
-      facebook: loading || !profile.social ? '' : profile.social.facebook,
-      linkedin: loading || !profile.social ? '' : profile.social.linkedin,
-      youtube: loading || !profile.social ? '' : profile.social.youtube,
-      instagram: loading || !profile.social ? '' : profile.social.instagram,
-    });
+    if (!loading && profile) {
+      setFormData({
+        company: profile.company ? profile.company : '',
+        website: profile.website ? profile.website : '',
+        location: profile.location ? profile.location : '',
+        status: profile.status ? profile.status : '',
+        skills: profile.skills ? profile.skills.join(', ') : '',
+        githubUsername: profile.githubUsername ? profile.githubUsername : '',
+        bio: profile.bio ? profile.bio : '',
+        twitter: profile.social ? profile.social.twitter : '',
+        facebook: profile.social ? profile.social.facebook : '',
+        linkedin: profile.social ? profile.social.linkedin : '',
+        youtube: profile.social ? profile.social.youtube : '',
+        instagram: profile.social ? profile.social.instagram : '',
+      });
+
+      toggleSocialInputs(profile.social ? true : false);
+    }
     // eslint-disable-next-line
   }, [loading, getCurrentProfile]);
 
