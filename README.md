@@ -79,3 +79,7 @@ This project is [MIT](./LICENSE) licensed.
 ## Resource
 
 You can get an Github token by following [these instructions](https://help.github.com/en/github/authenticating-to-github/creating-a-personal-access-token-for-the-command-line)
+
+- [jwt authentication](https://jwt.io/)
+- [transitioning from rdbms to mongodb](https://www.mongodb.com/blog/post/transitioning-from-relational-databases-to-mongodb)
+- [prettier options](https://prettier.io/docs/en/options.html)
