@@ -2,7 +2,7 @@
 
 > Social network for developers
 
-This is a MERN stack application from the "MERN Stack Front To Back" course on Udemy. It is a small social network app that includes authentication, profiles and forum posts.
+This is a MERN stack application from the "MERN Stack Front To Back" course on Udemy. It is a small social network app that includes authentication, profiles and forum posts. <br />
 To practice at building NodeJS app, I built it on top of this [course](https://www.udemy.com/course/mern-stack-front-to-back/).
 
 ## Version info
