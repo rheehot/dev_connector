@@ -2,8 +2,8 @@
 
 > Social network for developers
 
-This is a MERN stack application from the "MERN Stack Front To Back" course on Udemy. It is a small social network app that includes authentication, profiles and forum posts. <br />
-To practice at building NodeJS app, I built it on top of this [course](https://www.udemy.com/course/mern-stack-front-to-back/).
+It is a small social network app that includes authentication, profiles and forum posts. <br />
+To practice at building NodeJS app, I built it on top of this [MERN Stack Front To Back](https://www.udemy.com/course/mern-stack-front-to-back/) course on Udemy.
 
 ## Version info
 
@@ -49,7 +49,12 @@ cd client
 npm run build
 ```
 
-### ✨ [Live Demo](https://suh-dev-connector.herokuapp.com/)
+### ✨ Live Demo
+
+[herokuapp](https://suh-dev-connector.herokuapp.com/)
+
+- Version: 1.0.0
+- Author: Suhyeon Jang, [Brad Traversy MERN stack](https://www.udemy.com/course/mern-stack-front-to-back/) course
 
 ## Resource
 
